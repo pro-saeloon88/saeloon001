@@ -10,7 +10,7 @@ body {
 
 /* Container */
 .container {
-  max-width: 900px;
+  max-width: 1000px; /* made wider */
   margin: auto;
   padding: 20px;
 }
@@ -57,10 +57,10 @@ body {
 .infobox {
   border: 1px solid #aaa;
   background: #f9f9f9;
-  padding: 6px;
-  width: 250px;
+  padding: 10px;
+  width: 300px; /* wider */
   float: right;
-  margin: 0 0 10px 10px;
+  margin: 0 0 10px 20px;
   font-size: 0.9em;
 }
 
@@ -72,19 +72,19 @@ body {
 .infobox th {
   background-color: #f2f2f2;
   text-align: left;
-  padding: 4px;
+  padding: 6px;
   border: 1px solid #aaa;
 }
 
 .infobox td {
-  padding: 4px;
+  padding: 6px;
   border: 1px solid #aaa;
 }
 
 .infobox caption {
   font-weight: bold;
   text-align: center;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 /* Infobox images */
@@ -105,6 +105,71 @@ body {
 }
 
 .article-content h3 {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  cursor: pointer; /* pointer to indicate collapsible */
+}
+
+/* Collapsible content */
+.collapsible-content {
+  display: block;
+  padding: 0 10px 10px 10px;
+}
+
+/* Paragraphs */
+.article-content p {
+  margin-bottom: 12px;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.gallery img {
+  max-width: calc(50% - 4px);
+  border: 1px solid #aaa;
+  padding: 2px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid #aaa;
+  padding: 12px 0;
+  margin-top: 30px;
+  font-size: 0.85em;
+  color: #555;
+  text-align: center;
+}
+
+/* RTL support for Arabic page */
+html[dir="rtl"] .infobox {
+  float: left;
+  margin: 0 20px 10px 0;
+}
+
+html[dir="rtl"] .site-header div {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .toc {
+  text-align: right;
+}
+
+html[dir="rtl"] .gallery {
+  flex-direction: row-reverse;
+}.article-content h3 {
   margin-top: 18px;
   margin-bottom: 8px;
   font-size: 1.2em;
