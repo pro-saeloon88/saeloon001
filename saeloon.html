@@ -5,93 +5,28 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Saeloon — Article</title>
 <link rel="stylesheet" href="styles.css">
-
-<style>
-/* Infobox styling */
-.infobox {
-  float: right;
-  width: 260px;
-  margin: 0 0 1em 1em;
-  border: 1px solid #aaa;
-  padding: 0.5em;
-  font-size: 90%;
-  background: #f9f9f9;
-}
-
-.infobox th {
-  background: #f2f2f2;
-  text-align: left;
-  padding: 0.2em 0.5em;
-}
-
-.infobox td {
-  padding: 0.2em 0.5em;
-}
-
-.infobox img {
-  width: 100%;
-  height: auto;
-  border: 1px solid #ddd;
-}
-
-/* Collapsible sections */
-.collapsible {
-  cursor: pointer;
-  padding: 8px;
-  font-weight: bold;
-  background-color: #eee;
-  border: none;
-  text-align: left;
-  outline: none;
-  width: 100%;
-}
-
-.active, .collapsible:hover {
-  background-color: #ccc;
-}
-
-.collapsible-content {
-  display: none;
-  padding: 0 1em;
-  overflow: hidden;
-}
-
-/* Gallery styling */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-}
-
-.gallery img {
-  max-width: 120px;
-  height: auto;
-  border: 1px solid #ccc;
-}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  var coll = document.getElementsByClassName("collapsible");
-  for (var i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      content.style.display = (content.style.display === "block") ? "none" : "block";
-    });
-  }
-});
-</script>
-
 </head>
 <body>
 <div id="content">
-
 <header class="site-header container">
   <div style="display:flex;justify-content:space-between;align-items:center;">
     <div>
       <h1 style="margin:0;"><a href="index.html">Saeloon</a></h1>
+      <div class="toc">
+        <b>Contents</b>
+        <ul>
+          <li><a href="#affiliations">1 Affiliations</a></li>
+          <li><a href="#background">2 Background</a></li>
+          <li><a href="#name-identity">3 Name & Identity</a></li>
+          <li><a href="#symbolism">4 Symbolism & Flag</a></li>
+          <li><a href="#organization">5 Organization & Membership</a></li>
+          <li><a href="#incidents">6 Incidents</a></li>
+          <li><a href="#influences">7 Influences & Change</a></li>
+          <li><a href="#dissolution">8 Dissolution</a></li>
+          <li><a href="#legacy">9 Legacy</a></li>
+          <li><a href="#gallery">10 Gallery</a></li>
+        </ul>
+      </div>
       <p class="tagline" style="margin:4px 0 0;">A fictional micronation-style online community (2020–2024)</p>
     </div>
     <div style="text-align:right;">
@@ -101,78 +36,110 @@ document.addEventListener("DOMContentLoaded", function() {
 </header>
 
 <main class="container">
+  <div class="article-body">
 
-<aside class="infobox" aria-label="Infobox">
-  <caption>Saeloon</caption>
-  <table style="width:100%; border-collapse:collapse">
-    <tr><th>Type</th><td>Fictional micronation / online community</td></tr>
-    <tr><th>Founded</th><td>2020</td></tr>
-    <tr><th>Dissolved</th><td>5 November 2024</td></tr>
-    <tr><th>Founder</th><td>Mohamed Khaled (Kahk alit)</td></tr>
-    <tr><th>Co-leaders</th><td>Saged Khaled; Mohamed Ayman</td></tr>
-    <tr><th>Flag</th><td><img src="assets/Saeloon_flag.jpg" alt="Saeloon flag"></td></tr>
-    <tr><th>National anthem</th>
-      <td>
-        Saeloon National Anthem<br>
-        <audio controls preload="none" style="width:100%; margin-top:6px">
-          <source src="assets/Saeloon_anthem.ogg" type="audio/ogg">
-          Your browser does not support audio.
-        </audio>
-      </td>
-    </tr>
-  </table>
-</aside>
+    <!-- infobox -->
+    <aside class="infobox" aria-label="Infobox">
+      <caption>Saeloon</caption>
+      <table>
+        <tr><th>Type</th><td>Fictional micronation / online community</td></tr>
+        <tr><th>Founded</th><td>2020</td></tr>
+        <tr><th>Dissolved</th><td>5 November 2024</td></tr>
+        <tr><th>Founder</th><td>Mohamed Khaled (Kahk alit)</td></tr>
+        <tr><th>Co-leaders</th><td>Saged Khaled; Mohamed Ayman</td></tr>
+        <tr><th>Flag</th><td><img src="assets/Saeloon_flag.jpg" alt="Saeloon flag"></td></tr>
+        <tr><th>National anthem</th>
+          <td>
+            Saeloon National Anthem<br>
+            <audio controls preload="none">
+              <source src="assets/Saeloon_anthem.ogg" type="audio/ogg">
+              Your browser does not support audio.
+            </audio>
+          </td>
+        </tr>
+      </table>
+    </aside>
 
-<article class="article-content">
+    <!-- article content -->
+    <article class="article-content">
 
-<h2 id="history">History</h2>
-<p><strong>Saeloon</strong> is an informal online community that began in 2020 as a private Facebook Messenger group. Although not a real country, Saeloon adopted symbols, nicknames, and a flag to create a shared identity among members. This page archives the group's history, media, and selected conversations.</p>
+      <h2 id="affiliations" class="collapsible-heading">Affiliations</h2>
+      <div class="collapsible-content">
+        <p>Saeloon had links to two distinct online groups. Accounts are based on participant recollections:</p>
+        <ul>
+          <li><strong>SIMP / WHYTBS:</strong> former independent chat associated with some Saeloon founders.</li>
+          <li><strong>Salon Fawzi Cultural:</strong> informal cultural circle overlapping with Saeloon.</li>
+        </ul>
+      </div>
 
-<button class="collapsible">Background</button>
-<div class="collapsible-content">
-<p>Saeloon was founded in 2020 by Mohamed Khaled and a small circle of friends. It started as a place for memes, everyday chat, and shared culture. In 2021 the founder designed a simple black-and-white skull flag to give the group a consistent identity.</p>
-</div>
+      <h2 id="background" class="collapsible-heading">Background</h2>
+      <div class="collapsible-content">
+        <p>Saeloon was founded in 2020 by Mohamed Khaled and a small circle of friends. It started as a casual social space for memes, conversation, and daily life topics.</p>
+      </div>
 
-<button class="collapsible">Affiliations</button>
-<div class="collapsible-content">
-<p><strong>SIMP / WHYTBS:</strong> Former group chat, problematic association. Kahk and JackDaPrince were members; Kahk was a founder.</p>
-<p><strong>Salon Fawzi Cultural:</strong> Cultural circle; Ahmed FwZzy is the leader. Kahk was sometimes a leader and a respected member. It was a twin group to Saeloon; migration plan failed due to member disagreements.</p>
-</div>
+      <h2 id="name-identity" class="collapsible-heading">Name & Identity</h2>
+      <div class="collapsible-content">
+        <p>In 2021 Mohamed Khaled proposed a stable group identity: "Saeloon". This gave continuity across recurring group themes and inside jokes.</p>
+      </div>
 
-<button class="collapsible">Notable Incidents</button>
-<div class="collapsible-content">
-<p><strong>Ahmalid incident:</strong> Ahmalid left after a conflict; blocked from Saeloon.</p>
-<p><strong>Mazen security incident:</strong> Kahk and Mazen Mohamed had disputes, resulting in the Facebook group being banned and Kahk’s phone motherboard burned. Kahk later secured his new accounts and continued Saeloon.</p>
-</div>
+      <h2 id="symbolism" class="collapsible-heading">Symbolism & Flag</h2>
+      <div class="collapsible-content">
+        <p>Mohamed Khaled designed a black-and-white skull flag inspired by pirate iconography. The flag was used as an internal emblem.</p>
+      </div>
 
-<button class="collapsible">Gallery</button>
-<div class="collapsible-content">
-  <div class="gallery">
-    <img src="assets/Maadi.jpg" alt="Maadi">
-    <img src="assets/Alex.jpg" alt="Alexandria Corniche">
-    <img src="assets/Giza.jpg" alt="Giza Pyramids">
-    <img src="assets/1280px-Cairo_Tower_and_Qasr_El_Nil_Bridge.jpg" alt="Cairo Tower">
-    <img src="assets/Faculty_of_arts_in_Alexandria_University.jpg" alt="Alexandria University">
-    <img src="assets/Banha.jpg" alt="Benha">
-    <img src="assets/Little_St_James_Island_(9123420726).jpg" alt="Little St James">
-    <img src="assets/Jeffrey_Epstein_mug_shot.jpg" alt="Epstein">
+      <h2 id="organization" class="collapsible-heading">Organization & Membership</h2>
+      <div class="collapsible-content">
+        <p>No formal governance or territory existed. Leadership was informal, based on participation and social influence. Membership fluctuated, with a core group recognized as founders.</p>
+      </div>
+
+      <h2 id="incidents" class="collapsible-heading">Incidents</h2>
+      <div class="collapsible-content">
+        <p><strong>Ahmalid:</strong> Youngest member left after conflict.</p>
+        <p><strong>Mazen:</strong> Security and interpersonal dispute during 2020–2022.</p>
+      </div>
+
+      <h2 id="influences" class="collapsible-heading">Influences & Internal Change</h2>
+      <div class="collapsible-content">
+        <p>Members cited internet culture, alternative media aesthetics, and Jack Stauber’s work as influences. Changes in personal life affected group dynamics.</p>
+      </div>
+
+      <h2 id="dissolution" class="collapsible-heading">Dissolution</h2>
+      <div class="collapsible-content">
+        <p>On 5 November 2024, Mohamed Khaled closed the public group. Final message:</p>
+        <blockquote>
+          "@Everyone, this will be enough, comrades, and to the great people of Saeloon. We must leave now, but Saeloon will remain in our hearts forever. I entrust you to God, whose trust is never lost."
+        </blockquote>
+      </div>
+
+      <h2 id="legacy" class="collapsible-heading">Legacy</h2>
+      <div class="collapsible-content">
+        <p>The Saeloon identity remains an archival and mnemonic artifact of a small online community rather than an ongoing public movement.</p>
+      </div>
+
+      <h2 id="gallery" class="collapsible-heading">Gallery</h2>
+      <div class="collapsible-content gallery">
+        <img src="assets/Maadi.jpg" alt="Maadi">
+        <img src="assets/Alex.jpg" alt="Alexandria Corniche">
+        <img src="assets/Giza.jpg" alt="Giza Pyramids">
+        <img src="assets/1280px-Cairo_Tower_and_Qasr_El_Nil_Bridge.jpg" alt="Cairo Tower">
+        <img src="assets/Faculty_of_arts_in_Alexandria_University.jpg" alt="Alexandria University">
+        <img src="assets/Banha.jpg" alt="Benha">
+        <img src="assets/Little_St_James_Island_(9123420726).jpg" alt="Little St James">
+        <img src="assets/Jeffrey_Epstein_mug_shot.jpg" alt="Epstein">
+      </div>
+
+      <h3>References & Notes</h3>
+      <p>Content archived from private chats and participant recollections. Independent archive.</p>
+
+      <p><a href="index.html">← Back to home</a></p>
+    </article>
   </div>
-</div>
-
-<button class="collapsible">References & Notes</button>
-<div class="collapsible-content">
-<p>Content is archived from private chats and participant recollections. This site is an independent archive and not a news organization.</p>
-</div>
-
-<p><a href="index.html">← Back to home</a></p>
-
-</article>
 </main>
 
 <footer class="site-footer container">
   <div>© Saeloon archive — no official affiliation</div>
 </footer>
 
-</div>
+<script src="script.js"></script>
 </body>
 </html>
