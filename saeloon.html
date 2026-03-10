@@ -5,36 +5,51 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Saeloon — Article</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+/* Wikipedia-style tweaks */
+body { font-family: "Segoe UI", Arial, sans-serif; line-height:1.6; background:#fff; color:#202122; margin:0; padding:0;}
+.container { max-width:980px; margin:0 auto; padding:1em;}
+.site-header, .site-footer { border-bottom:1px solid #a2a9b1; padding:1em 0;}
+.site-footer { border-top:1px solid #a2a9b1; border-bottom:none; text-align:center; font-size:0.9em;}
+a { color:#0645ad; text-decoration:none;}
+a:hover { text-decoration:underline;}
+h1,h2,h3 { font-weight:normal; margin-top:1.5em; margin-bottom:0.5em;}
+h1 { font-size:2em;}
+.toc { border:1px solid #a2a9b1; background:#f9f9f9; padding:0.5em; margin:0.5em 0;}
+.toc b { display:block; margin-bottom:0.3em;}
+.toc ul { list-style:none; padding-left:1em; }
+.toc li { margin-bottom:0.2em;}
+.infobox { float:right; margin:0 0 1em 1em; border:1px solid #a2a9b1; background:#f8f9fa; width:300px; font-size:0.9em;}
+.infobox table { width:100%; border-collapse:collapse; font-size:0.9em;}
+.infobox th { background:#f2f2f2; text-align:left; padding:0.3em;}
+.infobox td { padding:0.3em;}
+.gallery { display:flex; flex-wrap:wrap; gap:0.5em;}
+.gallery img { width:calc(50% - 0.25em); border:1px solid #ddd; padding:2px;}
+.article-body:after { content:""; display:block; clear:both;}
+</style>
 </head>
 <body>
-  <div id="content">
+<div id="content">
+
 <header class="site-header container">
-  <div style="display:flex;justify-content:space-between;align-items:center;">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
     <div>
-      <h1 style="margin:0;"><a href="index.html">Saeloon</a></h1>
-      <div class="toc">
-<b>Contents</b>
-<ul>
-<li><a href="#history">1 History</a></li>
-<li><a href="#leadership">2 Leadership</a></li>
-<li><a href="#territory">3 Territory</a></li>
-<li><a href="#gallery">4 Gallery</a></li>
-</ul>
-      </div>
+      <h1><a href="index.html">Saeloon</a></h1>
       <p class="tagline" style="margin:4px 0 0;">A fictional micronation-style online community (2020–2024)</p>
     </div>
     <div style="text-align:right;">
-      <a href="saeloon_ar.html" style="font-size:14px; text-decoration:none;">العربية</a>
+      <a href="saeloon_ar.html" style="font-size:14px;">العربية</a>
     </div>
   </div>
 </header>
 
 <main class="container">
   <div class="article-body">
+
     <!-- infobox -->
     <aside class="infobox" aria-label="Infobox">
-      <caption>Saeloon</caption>
-      <table style="width:100%; border-collapse:collapse">
+      <table>
+        <caption style="font-weight:bold; font-size:1.1em; margin-bottom:0.3em;">Saeloon</caption>
         <tr><th>Type</th><td>Fictional micronation / online community</td></tr>
         <tr><th>Founded</th><td>2020</td></tr>
         <tr><th>Dissolved</th><td>5 November 2024</td></tr>
@@ -43,8 +58,8 @@
         <tr><th>Flag</th><td><img src="assets/Saeloon_flag.jpg" alt="Saeloon flag" style="width:100%; border:1px solid #ddd;"></td></tr>
         <tr><th>National anthem</th>
           <td>
-            Saeloon National Anthem<br>
-            <audio controls preload="none" style="width:100%; margin-top:6px">
+            <strong>Saeloon National Anthem</strong><br>
+            <audio controls preload="none" style="width:100%; margin-top:6px;">
               <source src="assets/Saeloon_anthem.ogg" type="audio/ogg">
               Your browser does not support audio.
             </audio>
@@ -53,31 +68,40 @@
       </table>
     </aside>
 
+    <!-- Table of Contents -->
+    <div class="toc">
+      <b>Contents</b>
+      <ul>
+        <li><a href="#background">1 Background</a></li>
+        <li><a href="#incidents">2 Incidents</a></li>
+        <li><a href="#gallery">3 Gallery</a></li>
+        <li><a href="#references">4 References & notes</a></li>
+      </ul>
+    </div>
+
     <!-- main content -->
     <article class="article-content">
-      <h2>Saeloon</h2>
+      <h2 id="background">Background</h2>
       <p><strong>Saeloon</strong> is an informal online community that began in 2020 as a private Facebook Messenger group. Although not a real country, Saeloon adopted symbols, nicknames, and a flag to create a shared identity among members. This page archives the group's history, media, and selected conversations.</p>
-
-      <h3>Background</h3>
       <p>Saeloon was founded in 2020 by Mohamed Khaled and a small circle of friends. It started as a place for memes, everyday chat, and shared culture. In 2021 the founder designed a simple black-and-white skull flag to give the group a consistent identity.</p>
 
-      <h3>Incidents</h3>
+      <h2 id="incidents">Incidents</h2>
       <p><strong>Ahmalid incident:</strong> brief summary and outcome.</p>
       <p><strong>Mazen security incident:</strong> brief summary and outcome.</p>
 
-<h3>Gallery</h3>
-<div class="gallery">
-  <img src="assets/Maadi.jpg" alt="Maadi">
-  <img src="assets/Alex.jpg" alt="Alexandria Corniche">
-  <img src="assets/Giza.jpg" alt="Giza Pyramids">
-  <img src="assets/1280px-Cairo_Tower_and_Qasr_El_Nil_Bridge.jpg" alt="Cairo Tower">
-  <img src="assets/Faculty_of_arts_in_Alexandria_University.jpg" alt="Alexandria University">
-  <img src="assets/Banha.jpg" alt="Benha">
-  <img src="assets/Little_St_James_Island_(9123420726).jpg" alt="Little St James">
-  <img src="assets/Jeffrey_Epstein_mug_shot.jpg" alt="Epstein">
-</div>
+      <h2 id="gallery">Gallery</h2>
+      <div class="gallery">
+        <img src="assets/Maadi.jpg" alt="Maadi">
+        <img src="assets/Alex.jpg" alt="Alexandria Corniche">
+        <img src="assets/Giza.jpg" alt="Giza Pyramids">
+        <img src="assets/1280px-Cairo_Tower_and_Qasr_El_Nil_Bridge.jpg" alt="Cairo Tower">
+        <img src="assets/Faculty_of_arts_in_Alexandria_University.jpg" alt="Alexandria University">
+        <img src="assets/Banha.jpg" alt="Benha">
+        <img src="assets/Little_St_James_Island_(9123420726).jpg" alt="Little St James">
+        <img src="assets/Jeffrey_Epstein_mug_shot.jpg" alt="Epstein">
+      </div>
 
-      <h3>References & notes</h3>
+      <h2 id="references">References & notes</h2>
       <p>Content is archived from private chats and participant recollections. This site is an independent archive and not a news organization.</p>
 
       <p><a href="index.html">← Back to home</a></p>
@@ -88,6 +112,6 @@
 <footer class="site-footer container">
   <div>© Saeloon archive — no official affiliation</div>
 </footer>
-  </div>
+</div>
 </body>
 </html>
