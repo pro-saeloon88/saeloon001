@@ -1,111 +1,159 @@
-/* Wikipedia-like layout */
-
-body{
-font-family: Linux Libertine, Georgia, Times, serif;
-background:#f6f6f6;
-margin:0;
-color:#202122;
+/* General body */
+body {
+  font-family: "Linux Libertine", "Georgia", "Times New Roman", serif;
+  line-height: 1.6;
+  background: #fff;
+  color: #202122;
+  margin: 0;
+  padding: 0;
 }
 
-#content{
-background:white;
-max-width:1000px;
-margin:40px auto;
-padding:20px 40px;
-border:1px solid #a2a9b1;
+/* Container */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
 
-h1{
-font-size:28px;
-font-weight:normal;
-border-bottom:1px solid #a2a9b1;
+/* Site header */
+.site-header {
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-h2{
-border-bottom:1px solid #a2a9b1;
-font-weight:normal;
-margin-top:30px;
+/* Header links */
+.site-header a {
+  color: #0645ad;
+  text-decoration: none;
 }
 
-h3{
-font-weight:bold;
-margin-top:20px;
+.site-header a:hover {
+  text-decoration: underline;
 }
 
-p{
-line-height:1.6;
+/* Tagline below header */
+.tagline {
+  color: #555;
+  font-size: 0.9em;
 }
 
-/* infobox */
-
-.infobox{
-float:right;
-width:270px;
-border:1px solid #a2a9b1;
-background:#f8f9fa;
-margin:0 0 20px 20px;
-font-size:14px;
+/* Table of Contents */
+.toc {
+  font-size: 0.85em;
+  margin-top: 6px;
 }
 
-.infobox th{
-background:#eaecf0;
-padding:5px;
-text-align:center;
+.toc ul {
+  list-style: none;
+  padding-left: 0;
 }
 
-.infobox td{
-padding:6px;
+.toc li {
+  margin: 2px 0;
 }
 
-.infobox img{
-width:100%;
+/* Infobox */
+.infobox {
+  border: 1px solid #aaa;
+  background: #f9f9f9;
+  padding: 6px;
+  width: 250px;
+  float: right;
+  margin: 0 0 10px 10px;
+  font-size: 0.9em;
 }
 
-/* table of contents */
-
-.toc{
-border:1px solid #a2a9b1;
-background:#f8f9fa;
-padding:10px;
-width:250px;
-font-size:14px;
-margin:20px 0;
+.infobox table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.toc ul{
-list-style:none;
-padding-left:10px;
+.infobox th {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 4px;
+  border: 1px solid #aaa;
 }
 
-.toc li{
-margin:4px 0;
+.infobox td {
+  padding: 4px;
+  border: 1px solid #aaa;
 }
 
-/* gallery */
-
-.gallery img{
-width:220px;
-margin:5px;
-border:1px solid #c8ccd1;
+.infobox caption {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 4px;
 }
 
-/* links */
-
-a{
-color:#0645ad;
-text-decoration:none;
+/* Infobox images */
+.infobox img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
 }
 
-a:hover{
-text-decoration:underline;
+/* Article content */
+.article-content h2 {
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 4px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 1.4em;
 }
 
-/* footer */
+.article-content h3 {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 1.2em;
+}
 
-.footer{
-border-top:1px solid #a2a9b1;
-margin-top:40px;
-padding-top:10px;
-font-size:13px;
-color:#54595d;
+/* Paragraphs */
+.article-content p {
+  margin-bottom: 12px;
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.gallery img {
+  max-width: calc(50% - 4px);
+  border: 1px solid #aaa;
+  padding: 2px;
+  background: #fff;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid #aaa;
+  padding: 12px 0;
+  margin-top: 30px;
+  font-size: 0.85em;
+  color: #555;
+  text-align: center;
+}
+
+/* RTL support for Arabic page */
+html[dir="rtl"] .infobox {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+html[dir="rtl"] .site-header div {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .toc {
+  text-align: right;
+}
+
+html[dir="rtl"] .gallery {
+  flex-direction: row-reverse;
 }
