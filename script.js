@@ -13,20 +13,22 @@ document.addEventListener("DOMContentLoaded", function() {
   headings.forEach(heading => {
     heading.addEventListener('click', function(e) {
       e.preventDefault(); // prevent any default link jump
-      heading.classList.toggle('active');
+      heading.classList.toggle('open'); // toggle class for CSS arrow
+
       const content = heading.nextElementSibling;
       if(content && content.classList.contains('collapsible-content')) {
-        if(content.style.display === 'block') {
-          content.style.display = 'none';
+        content.classList.toggle('open'); // toggle the open class
+        if(content.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + "px";
         } else {
-          content.style.display = 'block';
+          content.style.maxHeight = null;
         }
       }
     });
   });
 
   // ------------------------------
-  // 2) Build Table of Contents (optional)
+  // 2) Build Table of Contents (TOC)
   // ------------------------------
   const tocContainer = document.getElementById('toc');
   if(tocContainer) {
@@ -51,11 +53,11 @@ document.addEventListener("DOMContentLoaded", function() {
   // ------------------------------
   const langButton = document.querySelector('.lang-switcher');
   if(langButton) {
+    const menu = document.querySelector('.lang-dropdown'); // use correct class from CSS
     langButton.addEventListener('click', function(e) {
-      e.stopPropagation(); // stop document click
-      const menu = langButton.querySelector('.lang-menu');
+      e.stopPropagation(); // prevent document click
       if(menu) {
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        menu.classList.toggle('hidden'); // toggle hidden class
       }
     });
   }
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ------------------------------
-// 4) Prevent page scroll to top
+// 4) Prevent page scroll to top on empty links
 // ------------------------------
 document.addEventListener("click", function(e) {
   const link = e.target.closest("a");
@@ -76,7 +78,11 @@ document.addEventListener("click", function(e) {
 // ------------------------------
 // 5) Close language menu if click outside
 // ------------------------------
-document.addEventListener('click', function() {
-  const menus = document.querySelectorAll('.lang-menu');
-  menus.forEach(menu => menu.style.display = 'none');
+document.addEventListener('click', function(e) {
+  const menus = document.querySelectorAll('.lang-dropdown');
+  menus.forEach(menu => {
+    if (!menu.classList.contains('hidden') && !menu.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  });
 });
