@@ -149,3 +149,50 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 });
+
+// language icon button behavior (add this inside DOMContentLoaded or at end of file)
+(function() {
+  const btn = document.getElementById('lang-button');
+  const list = document.getElementById('lang-list');
+  if (!btn || !list) return;
+
+  // toggle dropdown
+  function openList() {
+    list.classList.remove('hidden');
+    btn.setAttribute('aria-expanded','true');
+    // focus first link for keyboard users
+    const first = list.querySelector('a');
+    if (first) first.focus();
+  }
+  function closeList() {
+    list.classList.add('hidden');
+    btn.setAttribute('aria-expanded','false');
+    btn.focus();
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (list.classList.contains('hidden')) openList(); else closeList();
+  });
+
+  // click a language -> navigate
+  list.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    // let normal navigation occur; if you need SPA behavior, use location.href = a.href
+  });
+
+  // close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !list.contains(e.target)) closeList();
+  });
+
+  // keyboard support
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openList(); }
+    if (e.key === 'ArrowDown') { e.preventDefault(); openList(); }
+  });
+  list.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeList(); }
+  });
+})();
