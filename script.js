@@ -6,18 +6,18 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   // ------------------------------
-  // 1) Collapsible headings
+  // 1) Collapsible headings (H2/H3)
   // ------------------------------
   const headings = document.querySelectorAll('.collapsible-heading');
 
   headings.forEach(heading => {
     heading.addEventListener('click', function(e) {
-      e.preventDefault(); // prevent any default link jump
-      heading.classList.toggle('open'); // toggle class for CSS arrow
+      e.preventDefault();
+      heading.classList.toggle('open');
 
       const content = heading.nextElementSibling;
       if(content && content.classList.contains('collapsible-content')) {
-        content.classList.toggle('open'); // toggle the open class
+        content.classList.toggle('open');
         if(content.classList.contains('open')) {
           content.style.maxHeight = content.scrollHeight + "px";
         } else {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // ------------------------------
-  // 2) Build Table of Contents (TOC)
+  // 2) Build Table of Contents
   // ------------------------------
   const tocContainer = document.getElementById('toc');
   if(tocContainer) {
@@ -49,40 +49,34 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // ------------------------------
-  // 3) Language switcher button
+  // 3) Language switcher
   // ------------------------------
-  const langButton = document.querySelector('.lang-switcher');
-  if(langButton) {
-    const menu = document.querySelector('.lang-dropdown'); // use correct class from CSS
+  const langButton = document.getElementById('lang-button');
+  const langList = document.getElementById('lang-list');
+
+  if(langButton && langList) {
     langButton.addEventListener('click', function(e) {
-      e.stopPropagation(); // prevent document click
-      if(menu) {
-        menu.classList.toggle('hidden'); // toggle hidden class
-      }
+      e.stopPropagation();
+      langList.classList.toggle('hidden');
     });
   }
 
-});
+  // ------------------------------
+  // 4) Prevent scroll to top for #
+  // ------------------------------
+  document.addEventListener("click", function(e) {
+    const link = e.target.closest("a");
+    if (!link) return;
+    if (link.getAttribute("href") === "#") e.preventDefault();
+  });
 
-// ------------------------------
-// 4) Prevent page scroll to top on empty links
-// ------------------------------
-document.addEventListener("click", function(e) {
-  const link = e.target.closest("a");
-  if (!link) return;
-  if (link.getAttribute("href") === "#") {
-    e.preventDefault();
-  }
-});
-
-// ------------------------------
-// 5) Close language menu if click outside
-// ------------------------------
-document.addEventListener('click', function(e) {
-  const menus = document.querySelectorAll('.lang-dropdown');
-  menus.forEach(menu => {
-    if (!menu.classList.contains('hidden') && !menu.contains(e.target)) {
-      menu.classList.add('hidden');
+  // ------------------------------
+  // 5) Close language menu if click outside
+  // ------------------------------
+  document.addEventListener('click', function(e) {
+    if(langList && !langList.contains(e.target) && e.target !== langButton) {
+      langList.classList.add('hidden');
     }
   });
+
 });
