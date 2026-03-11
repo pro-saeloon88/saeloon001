@@ -95,3 +95,44 @@ body {
 .hidden { display:none !important; }
 a { color:var(--accent); text-decoration:none; }
 a:hover { text-decoration:underline; }
+
+/* language icon button (compact like Wikipedia) */
+.icon-lang {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:36px;
+  border-radius:8px;
+  border:1px solid #e6e7ea;
+  background:#fff;
+  cursor:pointer;
+  padding:0;
+  margin-left:8px;
+  box-shadow:0 1px 0 rgba(0,0,0,0.03);
+}
+.icon-lang:focus { outline:2px solid rgba(6,69,173,0.12); outline-offset:2px; }
+.lang-icon { font-weight:700; font-size:16px; line-height:1; font-family: "UniversLightCondensed", Arial, sans-serif; color: #2b2f36; }
+
+/* dropdown (re-uses .lang-dropdown class) */
+.lang-dropdown {
+  position:absolute;
+  top:44px;      /* sits below the button */
+  right:0;       /* adjust for RTL pages; for LTR you may want left:0 */
+  min-width:180px;
+  background:#fff;
+  border:1px solid #e6e7ea;
+  box-shadow:0 8px 20px rgba(16,24,40,0.06);
+  border-radius:8px;
+  padding:6px;
+  z-index:100;
+}
+.lang-dropdown.hidden { display:none; }
+.lang-dropdown li { list-style:none; margin:0; padding:0; }
+.lang-dropdown a {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:6px;
+  color:var(--text); text-decoration:none; font-size:14px;
+}
+.lang-dropdown a:hover { background:#f3f6ff; }
+.lang-dropdown .flag { width:18px; height:12px; background-size:cover; border-radius:2px; display:inline-block; }
