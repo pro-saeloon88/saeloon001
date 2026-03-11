@@ -247,3 +247,16 @@ document.querySelectorAll('a[href="#"]').forEach(link=>{
     if (e.key === 'Escape') { closeList(); }
   });
 })();
+
+// Stop empty anchor links from jumping to top
+document.addEventListener("click", function(e) {
+
+  const link = e.target.closest("a");
+
+  if (!link) return;
+
+  if (link.getAttribute("href") === "#") {
+    e.preventDefault();
+  }
+
+});
