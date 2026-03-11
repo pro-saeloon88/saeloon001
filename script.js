@@ -8,23 +8,34 @@ document.addEventListener("DOMContentLoaded", function() {
   // ------------------------------
   // 1) Collapsible headings (H2/H3)
   // ------------------------------
-  const headings = document.querySelectorAll('.collapsible-heading');
+  function setupCollapsibles() {
+    const headings = document.querySelectorAll('.collapsible-heading');
 
-  headings.forEach(heading => {
-    heading.addEventListener('click', function(e) {
-      e.preventDefault();
-      heading.classList.toggle('open');
+    headings.forEach(heading => {
+      heading.addEventListener('click', function(e) {
+        e.preventDefault();
+        heading.classList.toggle('open');
 
-      const content = heading.nextElementSibling;
-      if(content && content.classList.contains('collapsible-content')) {
-        content.classList.toggle('open');
-        if(content.classList.contains('open')) {
-          content.style.maxHeight = content.scrollHeight + "px";
-        } else {
-          content.style.maxHeight = null;
+        const content = heading.nextElementSibling;
+        if(content && content.classList.contains('collapsible-content')) {
+          content.classList.toggle('open');
+
+          // set max-height for smooth transition
+          if(content.classList.contains('open')) {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } else {
+            content.style.maxHeight = null;
+          }
         }
-      }
+      });
     });
+  }
+  setupCollapsibles();
+
+  // Ensure images inside collapsibles expand height correctly after load
+  const collapsibleImages = document.querySelectorAll('.collapsible-content img');
+  collapsibleImages.forEach(img => {
+    img.addEventListener('load', setupCollapsibles);
   });
 
   // ------------------------------
