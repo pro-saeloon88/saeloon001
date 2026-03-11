@@ -1,6 +1,11 @@
 // script.js — robust single-click collapsibles, TOC builder, and language switcher
 document.addEventListener('DOMContentLoaded', function() {
 
+  // Prevent links like "#" from jumping to top
+document.querySelectorAll('a[href="#"]').forEach(link=>{
+  link.addEventListener('click',e=>e.preventDefault());
+});
+
   // ---------- Collapsibles ----------
   function nextCollapsible(el) {
     let n = el.nextElementSibling;
