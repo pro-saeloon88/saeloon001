@@ -16,19 +16,19 @@
     <div class="tagline">هوية افتراضية شبيهة بالميكرونايشن على الإنترنت (2020–2024)</div>
   </div>
 
-  <!-- Language switcher: real button with dropdown (matches script.js) -->
-  <div class="header-right">
-    <div class="lang-switcher" id="lang-switcher" aria-haspopup="true" aria-expanded="false" role="button" tabindex="0">
-      <span class="flag lang-ar" title="العربية"></span>
-      <span class="label">AR</span>
-      <svg class="chev" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M8.5 9.5L12 13l3.5-3.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
+<!-- Language icon button (replace previous pill) -->
+<div class="header-right">
+  <button id="lang-button" class="icon-lang" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+    <span class="lang-icon">文A</span>
+  </button>
 
-    <ul class="lang-dropdown hidden" id="lang-dropdown" role="menu" aria-label="Language selector" style="right:0; left:auto;">
-      <li role="menuitem"><a href="saeloon.html" data-lang="en"><span class="flag lang-en"></span> English</a></li>
-      <li role="menuitem"><a href="saeloon_ar.html" data-lang="ar"><span class="flag lang-ar"></span> العربية</a></li>
-    </ul>
-  </div>
+  <ul id="lang-list" class="lang-dropdown hidden" role="menu" aria-label="Select language">
+    <!-- Edit these links to match your filenames -->
+    <li role="menuitem"><a href="saeloon.html" data-lang="en"><span class="flag lang-en"></span> English</a></li>
+    <li role="menuitem"><a href="saeloon_ar.html" data-lang="ar"><span class="flag lang-ar"></span> العربية</a></li>
+    <!-- Add more languages here if you need -->
+  </ul>
+</div>
 </header>
 
 <main class="container">
