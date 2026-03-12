@@ -1,23 +1,20 @@
 // ==============================
-// Saeloon Article Script – Fully Fixed
+// Saeloon Article Script – Ultimate Fix
 // Handles nested collapsibles, TOC, and language switcher
 // ==============================
 
 document.addEventListener("DOMContentLoaded", function() {
 
   // ------------------------------
-  // 1) Collapsible headings (H2/H3 nested)
+  // 1) Collapsible headings (H2/H3)
   // ------------------------------
   const headings = document.querySelectorAll('.collapsible-heading');
 
   headings.forEach(heading => {
     const content = heading.nextElementSibling;
 
-    // Initially hide all contents
     if(content && content.classList.contains('collapsible-content')) {
       content.style.display = 'none';
-      content.style.overflow = 'hidden';
-      content.style.transition = 'all 0.3s ease';
     }
 
     heading.addEventListener('click', function(e) {
@@ -28,11 +25,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if(content.style.display === 'none') {
         content.style.display = 'block';
-        const height = content.scrollHeight + "px";
+        const fullHeight = content.scrollHeight;
         content.style.height = '0px';
-        setTimeout(() => content.style.height = height, 10);
+        setTimeout(() => {
+          content.style.transition = 'height 0.35s ease';
+          content.style.height = fullHeight + 'px';
+        }, 10);
+
+        content.addEventListener('transitionend', function cleanup() {
+          content.style.height = 'auto';
+          content.removeEventListener('transitionend', cleanup);
+        });
+
       } else {
-        content.style.height = '0px';
+        const fullHeight = content.scrollHeight;
+        content.style.height = fullHeight + 'px';
+        setTimeout(() => {
+          content.style.transition = 'height 0.35s ease';
+          content.style.height = '0px';
+        }, 10);
+
         content.addEventListener('transitionend', function hide() {
           content.style.display = 'none';
           content.removeEventListener('transitionend', hide);
@@ -42,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // ------------------------------
-  // 2) Build Table of Contents (works for H2/H3)
+  // 2) Build Table of Contents (H2/H3)
   // ------------------------------
   const tocContainer = document.getElementById('toc');
   if(tocContainer) {
