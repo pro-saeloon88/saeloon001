@@ -1,6 +1,6 @@
 // ==============================
-// Saeloon Article Script
-// Handles collapsible sections, TOC, and language switcher
+// Saeloon Article Script - Ultimate Fix
+// Handles nested collapsibles, TOC, and language switcher
 // ==============================
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -8,6 +8,18 @@ document.addEventListener("DOMContentLoaded", function() {
   // ------------------------------
   // 1) Collapsible headings (H2/H3)
   // ------------------------------
+  function setMaxHeight(element) {
+    if (!element) return 0;
+    let totalHeight = 0;
+    const children = Array.from(element.children);
+    children.forEach(child => {
+      if (child.classList.contains('collapsible-content') && child.classList.contains('open')) {
+        totalHeight += setMaxHeight(child);
+      }
+    });
+    return element.scrollHeight + totalHeight;
+  }
+
   const headings = document.querySelectorAll('.collapsible-heading');
 
   headings.forEach(heading => {
@@ -18,13 +30,20 @@ document.addEventListener("DOMContentLoaded", function() {
       const content = heading.nextElementSibling;
       if(content && content.classList.contains('collapsible-content')) {
         content.classList.toggle('open');
+
+        // Recalculate heights for all parent collapsibles
+        let parent = content.parentElement;
+        while(parent) {
+          const openContent = parent.querySelectorAll('.collapsible-content.open');
+          openContent.forEach(oc => {
+            oc.style.maxHeight = oc.scrollHeight + "px";
+          });
+          parent = parent.parentElement;
+        }
+
+        // Set maxHeight for clicked content
         if(content.classList.contains('open')) {
-          // calculate height including nested content
-          let totalHeight = content.scrollHeight;
-          // add any nested open collapsibles
-          const nestedOpen = content.querySelectorAll('.collapsible-content.open');
-          nestedOpen.forEach(nc => totalHeight += nc.scrollHeight);
-          content.style.maxHeight = totalHeight + "px";
+          content.style.maxHeight = setMaxHeight(content) + "px";
         } else {
           content.style.maxHeight = null;
         }
@@ -54,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // ------------------------------
-  // 3) Language switcher button
+  // 3) Language switcher
   // ------------------------------
   const langButton = document.getElementById('lang-button');
   const langList = document.getElementById('lang-list');
@@ -63,15 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
     langButton.addEventListener('click', function(e) {
       e.stopPropagation();
       langList.classList.toggle('hidden');
-
-      // Ensure dropdown fits inside viewport
-      const rect = langList.getBoundingClientRect();
-      const overflowX = rect.right - window.innerWidth;
-      if (overflowX > 0) {
-        langList.style.left = `-${overflowX + 5}px`;
-      } else {
-        langList.style.left = 'auto';
-      }
     });
   }
 
@@ -94,11 +104,11 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // ------------------------------
-  // 6) Ensure collapsible sections recalc on window resize
+  // 6) Recalculate open collapsibles on window resize
   // ------------------------------
   window.addEventListener('resize', () => {
     document.querySelectorAll('.collapsible-content.open').forEach(content => {
-      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.maxHeight = setMaxHeight(content) + "px";
     });
   });
 
