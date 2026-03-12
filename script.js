@@ -1,19 +1,14 @@
+// ==============================
+// Saeloon Article Script
+// Handles collapsible sections, TOC, and language switcher
+// ==============================
+
 document.addEventListener("DOMContentLoaded", function() {
 
   // ------------------------------
-  // Collapsible headings (H2/H3)
+  // 1) Collapsible headings (H2/H3)
   // ------------------------------
   const headings = document.querySelectorAll('.collapsible-heading');
-
-  function getFullHeight(el) {
-    // calculate full height including nested open collapsibles
-    let total = el.scrollHeight;
-    const nested = el.querySelectorAll('.collapsible-content.open');
-    nested.forEach(n => {
-      total += n.scrollHeight;
-    });
-    return total;
-  }
 
   headings.forEach(heading => {
     heading.addEventListener('click', function(e) {
@@ -23,28 +18,22 @@ document.addEventListener("DOMContentLoaded", function() {
       const content = heading.nextElementSibling;
       if(content && content.classList.contains('collapsible-content')) {
         content.classList.toggle('open');
-
         if(content.classList.contains('open')) {
-          content.style.maxHeight = getFullHeight(content) + "px";
+          // calculate height including nested content
+          let totalHeight = content.scrollHeight;
+          // add any nested open collapsibles
+          const nestedOpen = content.querySelectorAll('.collapsible-content.open');
+          nestedOpen.forEach(nc => totalHeight += nc.scrollHeight);
+          content.style.maxHeight = totalHeight + "px";
         } else {
-          content.style.maxHeight = "0px";
+          content.style.maxHeight = null;
         }
       }
     });
   });
 
-  // adjust heights after images load
-  const imgs = document.querySelectorAll('.collapsible-content img');
-  imgs.forEach(img => {
-    img.addEventListener('load', () => {
-      document.querySelectorAll('.collapsible-content.open').forEach(c => {
-        c.style.maxHeight = getFullHeight(c) + "px";
-      });
-    });
-  });
-
   // ------------------------------
-  // Build Table of Contents
+  // 2) Build Table of Contents
   // ------------------------------
   const tocContainer = document.getElementById('toc');
   if(tocContainer) {
@@ -65,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // ------------------------------
-  // Language switcher
+  // 3) Language switcher button
   // ------------------------------
   const langButton = document.getElementById('lang-button');
   const langList = document.getElementById('lang-list');
@@ -74,18 +63,20 @@ document.addEventListener("DOMContentLoaded", function() {
     langButton.addEventListener('click', function(e) {
       e.stopPropagation();
       langList.classList.toggle('hidden');
+
+      // Ensure dropdown fits inside viewport
+      const rect = langList.getBoundingClientRect();
+      const overflowX = rect.right - window.innerWidth;
+      if (overflowX > 0) {
+        langList.style.left = `-${overflowX + 5}px`;
+      } else {
+        langList.style.left = 'auto';
+      }
     });
   }
 
-  // close language dropdown if clicked outside
-  document.addEventListener('click', function(e) {
-    if(langList && !langList.contains(e.target) && e.target !== langButton) {
-      langList.classList.add('hidden');
-    }
-  });
-
   // ------------------------------
-  // Prevent # links from jumping
+  // 4) Prevent scroll to top for #
   // ------------------------------
   document.addEventListener("click", function(e) {
     const link = e.target.closest("a");
@@ -94,11 +85,20 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // ------------------------------
-  // Adjust open collapsibles on resize
+  // 5) Close language menu if click outside
+  // ------------------------------
+  document.addEventListener('click', function(e) {
+    if(langList && !langList.contains(e.target) && e.target !== langButton) {
+      langList.classList.add('hidden');
+    }
+  });
+
+  // ------------------------------
+  // 6) Ensure collapsible sections recalc on window resize
   // ------------------------------
   window.addEventListener('resize', () => {
-    document.querySelectorAll('.collapsible-content.open').forEach(c => {
-      c.style.maxHeight = getFullHeight(c) + "px";
+    document.querySelectorAll('.collapsible-content.open').forEach(content => {
+      content.style.maxHeight = content.scrollHeight + "px";
     });
   });
 
