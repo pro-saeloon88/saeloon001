@@ -1,14 +1,19 @@
-// ==============================
-// Saeloon Article Script
-// Handles collapsible sections, TOC, and language switcher
-// ==============================
-
 document.addEventListener("DOMContentLoaded", function() {
 
   // ------------------------------
-  // 1) Collapsible headings (H2/H3)
+  // Collapsible headings (H2/H3)
   // ------------------------------
   const headings = document.querySelectorAll('.collapsible-heading');
+
+  function getFullHeight(el) {
+    // calculate full height including nested open collapsibles
+    let total = el.scrollHeight;
+    const nested = el.querySelectorAll('.collapsible-content.open');
+    nested.forEach(n => {
+      total += n.scrollHeight;
+    });
+    return total;
+  }
 
   headings.forEach(heading => {
     heading.addEventListener('click', function(e) {
@@ -19,35 +24,27 @@ document.addEventListener("DOMContentLoaded", function() {
       if(content && content.classList.contains('collapsible-content')) {
         content.classList.toggle('open');
 
-        // Use scrollHeight recursively for nested content
-        const updateHeight = (el) => {
-          el.style.maxHeight = null; // reset
-          if(el.classList.contains('open')) {
-            el.style.maxHeight = el.scrollHeight + "px";
-          }
-          // recursively update nested collapsibles
-          const nested = el.querySelectorAll('.collapsible-content.open');
-          nested.forEach(n => {
-            n.style.maxHeight = n.scrollHeight + "px";
-          });
-        };
-        updateHeight(content);
+        if(content.classList.contains('open')) {
+          content.style.maxHeight = getFullHeight(content) + "px";
+        } else {
+          content.style.maxHeight = "0px";
+        }
       }
     });
   });
 
-  // Recalculate heights when images load inside collapsibles
-  const collapsibleImages = document.querySelectorAll('.collapsible-content img');
-  collapsibleImages.forEach(img => {
+  // adjust heights after images load
+  const imgs = document.querySelectorAll('.collapsible-content img');
+  imgs.forEach(img => {
     img.addEventListener('load', () => {
-      document.querySelectorAll('.collapsible-content.open').forEach(openContent => {
-        openContent.style.maxHeight = openContent.scrollHeight + "px";
+      document.querySelectorAll('.collapsible-content.open').forEach(c => {
+        c.style.maxHeight = getFullHeight(c) + "px";
       });
     });
   });
 
   // ------------------------------
-  // 2) Build Table of Contents
+  // Build Table of Contents
   // ------------------------------
   const tocContainer = document.getElementById('toc');
   if(tocContainer) {
@@ -68,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // ------------------------------
-  // 3) Language switcher
+  // Language switcher
   // ------------------------------
   const langButton = document.getElementById('lang-button');
   const langList = document.getElementById('lang-list');
@@ -77,19 +74,18 @@ document.addEventListener("DOMContentLoaded", function() {
     langButton.addEventListener('click', function(e) {
       e.stopPropagation();
       langList.classList.toggle('hidden');
-
-      // Adjust position to prevent overflow
-      const rect = langList.getBoundingClientRect();
-      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-      if(rect.right > viewportWidth - 10) {
-        langList.style.left = 'auto';
-        langList.style.right = '0';
-      }
     });
   }
 
+  // close language dropdown if clicked outside
+  document.addEventListener('click', function(e) {
+    if(langList && !langList.contains(e.target) && e.target !== langButton) {
+      langList.classList.add('hidden');
+    }
+  });
+
   // ------------------------------
-  // 4) Prevent scroll to top for #
+  // Prevent # links from jumping
   // ------------------------------
   document.addEventListener("click", function(e) {
     const link = e.target.closest("a");
@@ -98,22 +94,11 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // ------------------------------
-  // 5) Close language menu if click outside
-  // ------------------------------
-  document.addEventListener('click', function(e) {
-    if(langList && !langList.contains(e.target) && e.target !== langButton) {
-      langList.classList.add('hidden');
-      langList.style.left = ''; // reset
-      langList.style.right = '';
-    }
-  });
-
-  // ------------------------------
-  // 6) Adjust all open collapsibles on window resize
+  // Adjust open collapsibles on resize
   // ------------------------------
   window.addEventListener('resize', () => {
-    document.querySelectorAll('.collapsible-content.open').forEach(openContent => {
-      openContent.style.maxHeight = openContent.scrollHeight + "px";
+    document.querySelectorAll('.collapsible-content.open').forEach(c => {
+      c.style.maxHeight = getFullHeight(c) + "px";
     });
   });
 
