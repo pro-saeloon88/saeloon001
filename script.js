@@ -8,34 +8,42 @@ document.addEventListener("DOMContentLoaded", function() {
   // ------------------------------
   // 1) Collapsible headings (H2/H3)
   // ------------------------------
-  function setupCollapsibles() {
-    const headings = document.querySelectorAll('.collapsible-heading');
+  const headings = document.querySelectorAll('.collapsible-heading');
 
-    headings.forEach(heading => {
-      heading.addEventListener('click', function(e) {
-        e.preventDefault();
-        heading.classList.toggle('open');
+  headings.forEach(heading => {
+    heading.addEventListener('click', function(e) {
+      e.preventDefault();
+      heading.classList.toggle('open');
 
-        const content = heading.nextElementSibling;
-        if(content && content.classList.contains('collapsible-content')) {
-          content.classList.toggle('open');
+      const content = heading.nextElementSibling;
+      if(content && content.classList.contains('collapsible-content')) {
+        content.classList.toggle('open');
 
-          // set max-height for smooth transition
-          if(content.classList.contains('open')) {
-            content.style.maxHeight = content.scrollHeight + "px";
-          } else {
-            content.style.maxHeight = null;
+        // Use scrollHeight recursively for nested content
+        const updateHeight = (el) => {
+          el.style.maxHeight = null; // reset
+          if(el.classList.contains('open')) {
+            el.style.maxHeight = el.scrollHeight + "px";
           }
-        }
-      });
+          // recursively update nested collapsibles
+          const nested = el.querySelectorAll('.collapsible-content.open');
+          nested.forEach(n => {
+            n.style.maxHeight = n.scrollHeight + "px";
+          });
+        };
+        updateHeight(content);
+      }
     });
-  }
-  setupCollapsibles();
+  });
 
-  // Ensure images inside collapsibles expand height correctly after load
+  // Recalculate heights when images load inside collapsibles
   const collapsibleImages = document.querySelectorAll('.collapsible-content img');
   collapsibleImages.forEach(img => {
-    img.addEventListener('load', setupCollapsibles);
+    img.addEventListener('load', () => {
+      document.querySelectorAll('.collapsible-content.open').forEach(openContent => {
+        openContent.style.maxHeight = openContent.scrollHeight + "px";
+      });
+    });
   });
 
   // ------------------------------
@@ -69,6 +77,14 @@ document.addEventListener("DOMContentLoaded", function() {
     langButton.addEventListener('click', function(e) {
       e.stopPropagation();
       langList.classList.toggle('hidden');
+
+      // Adjust position to prevent overflow
+      const rect = langList.getBoundingClientRect();
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+      if(rect.right > viewportWidth - 10) {
+        langList.style.left = 'auto';
+        langList.style.right = '0';
+      }
     });
   }
 
@@ -87,7 +103,18 @@ document.addEventListener("DOMContentLoaded", function() {
   document.addEventListener('click', function(e) {
     if(langList && !langList.contains(e.target) && e.target !== langButton) {
       langList.classList.add('hidden');
+      langList.style.left = ''; // reset
+      langList.style.right = '';
     }
+  });
+
+  // ------------------------------
+  // 6) Adjust all open collapsibles on window resize
+  // ------------------------------
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.collapsible-content.open').forEach(openContent => {
+      openContent.style.maxHeight = openContent.scrollHeight + "px";
+    });
   });
 
 });
