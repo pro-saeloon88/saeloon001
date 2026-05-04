@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage - My Encyclopedia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><a href="index.html">My Encyclopedia</a></div>
+      <div class="search">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" href="editor.html">Create article</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebox">
+        <h3>Navigation</h3>
+        <div class="menu" id="sidebarMenu"></div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="shell">
+        <h1>Manage articles</h1>
+        <p class="subtitle">Open, edit, or delete articles saved in this browser.</p>
+        <div id="manageRoot"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    WikiApp.renderManagePage();
+  </script>
+</body>
+</html>

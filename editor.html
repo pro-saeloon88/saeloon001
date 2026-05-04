@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editor - My Encyclopedia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><a href="index.html">My Encyclopedia</a></div>
+      <div class="search">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" href="manage.html">Manage</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebox">
+        <h3>Navigation</h3>
+        <div class="menu" id="sidebarMenu"></div>
+      </div>
+      <div class="sidebox">
+        <h3>Help</h3>
+        <div class="menu">
+          <span class="help">Sections and references are entered as JSON arrays.</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="shell card">
+        <h1 id="editorTitle">Create article</h1>
+        <form id="editorForm" class="editor">
+          <input type="hidden" id="originalSlug" value="" />
+
+          <label>
+            Title
+            <input id="title" required placeholder="Article title" />
+          </label>
+
+          <label>
+            Subtitle
+            <input id="subtitle" placeholder="Short subtitle" />
+          </label>
+
+          <label>
+            Category
+            <input id="category" placeholder="History, Science, etc." />
+          </label>
+
+          <label>
+            Status
+            <input id="status" placeholder="Draft / Published" />
+          </label>
+
+          <label>
+            Sections JSON
+            <textarea id="sections"></textarea>
+          </label>
+
+          <label>
+            References JSON
+            <textarea id="references"></textarea>
+          </label>
+
+          <div class="btn-row">
+            <button class="btn primary" type="submit">Save article</button>
+            <a class="btn" href="index.html">Cancel</a>
+          </div>
+
+          <div class="help">
+            Example sections format:
+            <pre>[
+  {"title":"Overview","content":["First paragraph.","Second paragraph."]},
+  {"title":"Details","content":["More text here."]}
+]</pre>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    WikiApp.renderEditorPage();
+  </script>
+</body>
+</html>

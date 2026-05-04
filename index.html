@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Encyclopedia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">My Encyclopedia</div>
+      <div class="search">
+        <input id="searchInput" type="text" placeholder="Search articles" />
+        <a class="btn" href="editor.html">New article</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebox">
+        <h3>Navigation</h3>
+        <div class="menu" id="sidebarMenu"></div>
+      </div>
+      <div class="sidebox">
+        <h3>Tools</h3>
+        <div class="menu">
+          <a href="manage.html">Manage articles</a>
+          <a href="editor.html">Create article</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="shell">
+        <div class="page-actions">
+          <div>Home</div>
+          <div class="tabs">
+            <span class="tab active">Read</span>
+            <a class="tab" href="manage.html">Manage</a>
+            <a class="tab" href="editor.html">Editor</a>
+          </div>
+        </div>
+
+        <div class="grid-list" id="articleList"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    WikiApp.renderIndexPage();
+  </script>
+</body>
+</html>

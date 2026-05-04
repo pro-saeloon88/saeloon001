@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><a href="index.html">My Encyclopedia</a></div>
+      <div class="search">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" id="editLink" href="editor.html">Edit article</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebox">
+        <h3>Navigation</h3>
+        <div class="menu" id="sidebarMenu"></div>
+      </div>
+      <div class="sidebox">
+        <h3>Tools</h3>
+        <div class="menu">
+          <a href="manage.html">Manage articles</a>
+          <a href="editor.html">Create article</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="shell" id="articleRoot"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const slug = params.get("slug") || "home";
+    const article = WikiApp.getArticle(slug);
+
+    if (!article) {
+      document.getElementById("articleRoot").innerHTML = `
+        <div class="card">
+          <h1>Article not found</h1>
+          <p>The article you requested does not exist in this browser yet.</p>
+          <p><a href="index.html">Go back home</a></p>
+        </div>
+      `;
+      WikiApp.renderSidebar("home");
+    } else {
+      document.title = article.title + " - My Encyclopedia";
+      document.getElementById("editLink").href = "editor.html?slug=" + encodeURIComponent(slug);
+      WikiApp.renderArticlePage(article, slug);
+    }
+  </script>
+</body>
+</html>
