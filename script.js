@@ -54,6 +54,10 @@
   if (f1) f1.addEventListener('error', function () { f1.hidden = true; $('flagfb').hidden = false; });
   if (f2) f2.addEventListener('error', function () { f2.parentNode.hidden = true; });
   document.querySelectorAll('.gallery img').forEach(function (im) { im.addEventListener('error', function () { im.hidden = true; im.nextElementSibling.hidden = false; }); });
+  function brokenNow(img, fn) { if (img && img.complete && img.naturalWidth === 0) fn(); }
+  brokenNow(f1, function () { f1.hidden = true; $('flagfb').hidden = false; });
+  brokenNow(f2, function () { f2.parentNode.hidden = true; });
+  document.querySelectorAll('.gallery img').forEach(function (im) { brokenNow(im, function () { im.hidden = true; im.nextElementSibling.hidden = false; }); });
   var au = $('anthem');
   function audioFail() { au.hidden = true; $('audfb').hidden = false; }
   if (au) { au.addEventListener('error', audioFail); var s = au.querySelector('source'); if (s) s.addEventListener('error', audioFail); }
@@ -222,6 +226,9 @@
     if (location.hash === '#' + id) { e.preventDefault(); openHash(); }
   });
   document.addEventListener('click', function (e) { if (!e.target.closest('.searchwrap')) res.hidden = true; });
+
+  var toc = $('toc');
+  if (toc && window.matchMedia && window.matchMedia('(min-width: 721px)').matches) toc.open = true;
 
   buildEditor();
   openHash();
