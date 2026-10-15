@@ -1,8 +1,12 @@
-/* Saeloon archive: encyclopedia reading style. System fonts only. */
+/* Saeloon archive: encyclopedia reading style.
+   iPhone/iPad/Mac use the real system font (San Francisco) via -apple-system.
+   Android and Windows use Inter (Latin) and Noto Sans Arabic, self-hosted in assets/fonts/. */
+@font-face{font-family:"Inter Local";src:url("assets/fonts/InterVariable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Sans Arabic Local";src:url("assets/fonts/NotoSansArabic.woff2") format("woff2"),url("assets/fonts/NotoSansArabic.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap}
 :root{
   --fg:#202122;--fg2:#54595d;--line:#c8ccd1;--line2:#eaecf0;--edge:#a2a9b1;
   --soft:#f8f9fa;--link:#36c;--link-h:#2a4b8d;--tint:#eaf3ff;
-  --font:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  --font:-apple-system,BlinkMacSystemFont,"Inter Local","Noto Sans Arabic Local","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:68px;scroll-behavior:smooth}
